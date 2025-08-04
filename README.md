@@ -1,7 +1,7 @@
 # 🧑‍🤝‍🧑 SplitMates
 
 [![PWA Ready](https://img.shields.io/badge/PWA-Ready-green?logo=pwa)](https://web.dev/progressive-web-apps/)
-[![Multi-Idioma](https://img.shields.io/badge/Idiomas-7-brightgreen)](#idiomas--languages)
+[![Multi-Idioma](https://img.shields.io/badge/Idiomas-7-brightgreen)](#-idiomas--languages)
 [![License](https://img.shields.io/github/license/TowaCAI/SplitMates)](LICENSE)
 
 <div align="center">
