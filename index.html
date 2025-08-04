@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SplitMates - División de Gastos entre Amigos</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6A3DE8">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <meta name="description" content="Divide gastos fácil entre amigos y equilibra las cuentas de cualquier juntada.">
+    <meta name="author" content="TowaCAI">
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Tipografía sugerida Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app" class="container">
+
+        <!-- Header principal -->
+        <header class="header">
+            <h1>🧑‍🤝‍🧑 SplitMates</h1>
+            <p>Divide gastos fácil entre amigos y equilibra las cuentas de cualquier juntada.</p>
+        </header>
+
+        <!-- Barra superior con idioma y grupos -->
+        <div class="top-bar">
+            <div class="lang-select-wrap" id="lang-select-wrap">
+                <select id="lang-select" class="lang-select" aria-label="Seleccionar idioma"></select>
+            </div>
+            <div class="grupos-bar" id="grupos-bar">
+                <select id="grupos-select" class="grupos-select"></select>
+                <button id="nuevo-grupo-btn" title="Nuevo grupo">＋</button>
+                <button id="eliminar-grupo-btn" title="Eliminar grupo">🗑️</button>
+            </div>
+        </div>
+
+        <!-- Botón para cambiar entre modo claro y oscuro -->
+        <button id="toggle-dark" title="Cambiar modo claro/oscuro" class="toggle-dark" aria-label="Cambiar modo claro/oscuro">
+            <span id="dark-icon" style="transition:.3s;">🌙</span>
+        </button>
+
+        <!-- Sección para agregar participantes -->
+        <section id="participants-section" class="section">
+            <h2>Participantes</h2>
+            <form id="add-participant-form">
+                <input type="text" id="participant-name" placeholder="Nombre o apodo" required>
+            <div class="emoji-picker">
+                <button type="button" class="emoji-option" data-emoji="🧑‍🤝‍🧑">🧑‍🤝‍🧑</button>
+                <button type="button" class="emoji-option" data-emoji="🧑‍💻">🧑‍💻</button>
+                <button type="button" class="emoji-option" data-emoji="🦖">🦖</button>
+                <button type="button" class="emoji-option" data-emoji="🦄">🦄</button>
+                <button type="button" class="emoji-option" data-emoji="🐱">🐱</button>
+                <button type="button" class="emoji-option" data-emoji="🎉">🎉</button>
+                <button type="button" class="emoji-option" data-emoji="🍕">🍕</button>
+                <button type="button" class="emoji-option" data-emoji="⭐️">⭐️</button>
+            </div>
+                <input type="hidden" id="participant-emoji" value="🧑‍🤝‍🧑">
+                <button type="submit">Agregar</button>
+            </form>
+            <div id="participants-list" class="chips"></div>
+        </section>
+
+        <!-- Sección para agregar gastos -->
+        <section id="expenses-section" class="section">
+            <h2>Gastos</h2>
+            <form id="add-expense-form">
+                <input type="text" id="expense-name" placeholder="¿Qué compraron?" required>
+                <input type="number" id="expense-amount" placeholder="Monto ($)" min="1" required>
+                <select id="expense-payer" required>
+                    <option value="" disabled selected>Pagado por</option>
+                    <!-- Opciones dinámicas por JS -->
+                </select>
+                <button type="submit">Agregar gasto</button>
+            </form>
+            <div id="expenses-list"></div>
+        </section>
+
+        <!-- Sección para calcular y mostrar resultados -->
+        <section id="results-section" class="section" style="display:none;">
+            <h2>Resultados</h2>
+            <div id="summary"></div>
+            <div id="balances"></div>
+            <div id="charts-section" style="margin:2em 0 0 0;">
+            <canvas id="pie-chart" width="320" height="180" style="margin-bottom:1.5em;"></canvas>
+            <canvas id="bar-chart" width="320" height="180"></canvas>
+            </div>
+            <button id="reset-btn">Nuevo grupo</button>
+        </section>
+
+        <!-- Botón para calcular (si hay participantes y gastos) -->
+        <div class="actions">
+            <button id="calculate-btn" disabled>Calcular división</button>
+        </div>
+
+        <!-- Pie de página -->
+        <footer class="footer">
+            <small>
+                💡 <b>SplitMates</b> • Hecho con <span style="color:#e53935;">♥</span> por 
+                <a href="https://github.com/TowaCAI" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">TowaCAI</a>
+            </small>
+        </footer>
+    </div>
+    <!-- Scripts -->
+    <script src="scripts/i18n.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/modules.js"></script>
+</body>
+</html>
