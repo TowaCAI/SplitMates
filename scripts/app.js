@@ -223,9 +223,9 @@ function startEditExpense(idx, row) {
     const g = expenses[idx];
     // Arma formulario inline
     row.innerHTML = `
-        <input type="text" value="${g.name}" style="width:90px;font-size:1em;" id="edit-name">
-        <input type="number" value="${g.amount}" min="1" style="width:70px;font-size:1em;" id="edit-amount">
-        <select id="edit-payer" style="font-size:1em;width:86px;">
+        <input type="text" value="${g.name}" style="width:90px;font-size:1em;" class="edit-name">
+        <input type="number" value="${g.amount}" min="1" style="width:70px;font-size:1em;" class="edit-amount">
+        <select class="edit-payer" style="font-size:1em;width:86px;">
             ${participants.map(p => `<option value="${p.nombre}" ${g.payer === p.nombre ? "selected" : ""}>${p.emoji} ${p.nombre}</option>`).join("")}
         </select>
         <span style="display:flex;gap:7px;">
@@ -233,9 +233,9 @@ function startEditExpense(idx, row) {
             <span class="edit" title="Guardar" style="cursor:pointer;">💾</span>
         </span>
     `;
-    const nameInput = row.querySelector('#edit-name');
-    const amountInput = row.querySelector('#edit-amount');
-    const payerSelect = row.querySelector('#edit-payer');
+    const nameInput = row.querySelector('.edit-name');
+    const amountInput = row.querySelector('.edit-amount');
+    const payerSelect = row.querySelector('.edit-payer');
     const cancelBtn = row.querySelector('.remove');
     const saveBtn = row.querySelector('.edit');
 
