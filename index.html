@@ -10,21 +10,21 @@
     <meta name="description" content="Divide gastos fácil entre amigos y equilibra las cuentas de cualquier juntada.">
     <meta name="author" content="TowaCAI">
     <link rel="stylesheet" href="styles/main.css">
-    <!-- Chart.js CDN -->
+    <!-- Biblioteca Chart.js para gráficos -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Tipografía sugerida Google Fonts -->
+    <!-- Tipografía Montserrat desde Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="app" class="container">
 
-        <!-- Header principal -->
+        <!-- Encabezado principal -->
         <header class="header">
             <h1>🧑‍🤝‍🧑 SplitMates</h1>
             <p>Divide gastos fácil entre amigos y equilibra las cuentas de cualquier juntada.</p>
         </header>
 
-        <!-- Barra superior con idioma y grupos -->
+        <!-- Barra superior: idioma y grupos -->
         <div class="top-bar">
             <div class="lang-select-wrap" id="lang-select-wrap">
                 <select id="lang-select" class="lang-select" aria-label="Seleccionar idioma"></select>
@@ -36,12 +36,12 @@
             </div>
         </div>
 
-        <!-- Botón para cambiar entre modo claro y oscuro -->
+        <!-- Botón para alternar entre modo claro y oscuro -->
         <button id="toggle-dark" title="Cambiar modo claro/oscuro" class="toggle-dark" aria-label="Cambiar modo claro/oscuro">
             <span id="dark-icon" style="transition:.3s;">🌙</span>
         </button>
 
-        <!-- Sección para agregar participantes -->
+        <!-- Sección de participantes -->
         <section id="participants-section" class="section">
             <h2>Participantes</h2>
             <form id="add-participant-form">
@@ -62,7 +62,7 @@
             <div id="participants-list" class="chips"></div>
         </section>
 
-        <!-- Sección para agregar gastos -->
+        <!-- Sección de gastos -->
         <section id="expenses-section" class="section">
             <h2>Gastos</h2>
             <form id="add-expense-form">
@@ -70,14 +70,14 @@
                 <input type="number" id="expense-amount" placeholder="Monto ($)" min="1" required>
                 <select id="expense-payer" required>
                     <option value="" disabled selected>Pagado por</option>
-                    <!-- Opciones dinámicas por JS -->
+                    <!-- Opciones generadas dinámicamente por JS -->
                 </select>
                 <button type="submit">Agregar gasto</button>
             </form>
             <div id="expenses-list"></div>
         </section>
 
-        <!-- Sección para calcular y mostrar resultados -->
+        <!-- Sección de resultados -->
         <section id="results-section" class="section" style="display:none;">
             <h2>Resultados</h2>
             <div id="summary"></div>
@@ -89,7 +89,7 @@
             <button id="reset-btn">Nuevo grupo</button>
         </section>
 
-        <!-- Botón para calcular (si hay participantes y gastos) -->
+        <!-- Botón de cálculo (se habilita con datos) -->
         <div class="actions">
             <button id="calculate-btn" disabled>Calcular división</button>
         </div>
@@ -102,7 +102,7 @@
             </small>
         </footer>
     </div>
-    <!-- Scripts -->
+
     <script src="scripts/i18n.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/modules.js"></script>

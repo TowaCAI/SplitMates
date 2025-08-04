@@ -1,5 +1,3 @@
-// scripts/i18n.js
-
 const TRANSLATIONS = {
   es: {
     // General y app
@@ -282,6 +280,7 @@ const LANGUAGES = [
 ];
 
 // Llenar el select al cargar
+// Rellena el selector de idiomas
 function fillLangSelect() {
   const select = document.getElementById('lang-select');
   select.innerHTML = '';
@@ -298,6 +297,7 @@ function fillLangSelect() {
 // === Lógica de cambio de idioma ===
 let currentLang = localStorage.getItem('splitmates_lang') || 'es';
 
+// Cambia el idioma activo y guarda la preferencia
 function setLang(lang) {
   currentLang = lang;
   localStorage.setItem('splitmates_lang', lang);
@@ -307,6 +307,7 @@ function setLang(lang) {
   if (select) select.value = lang;
 }
 
+// Aplica los textos según el idioma actual
 function applyTranslations() {
   const t = TRANSLATIONS[currentLang];
 

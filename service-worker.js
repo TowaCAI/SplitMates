@@ -12,7 +12,7 @@ const CACHE_FILES = [
   "https://cdn.jsdelivr.net/npm/chart.js"
 ];
 
-// Instalación: guarda archivos esenciales
+// Instala el SW y almacena archivos esenciales
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
@@ -21,7 +21,7 @@ self.addEventListener("install", event => {
   );
 });
 
-// Activación: limpia cachés viejas
+// Activa el SW y elimina cachés obsoletas
 self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys().then(keys =>
@@ -31,7 +31,7 @@ self.addEventListener("activate", event => {
   self.clients.claim();
 });
 
-// Fetch: sirve archivos desde caché si offline
+// Intercepta peticiones y responde desde caché cuando no hay conexión
 self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") return;
   event.respondWith(
