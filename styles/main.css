@@ -17,7 +17,7 @@
     --font: 'Montserrat', 'Arial', sans-serif;
 }
 
-/* Modo oscuro (fácil de activar con JS agregando .dark a body) */
+/* Variables para modo oscuro activado con la clase .dark */
 body.dark {
     --bg: var(--bg-dark);
     --card: var(--card-dark);
@@ -326,7 +326,6 @@ footer.footer {
 }
 
 /* Selector de idioma */
-/* Reemplaza y amplía aquí: */
 .lang-select-wrap {
   display: flex;
   align-items: center;
@@ -412,6 +411,7 @@ body.dark .grupos-select { background: #23272f; color: var(--accent); }
   .grupos-select { font-size: 0.93em; }
 }
 
+/* Selector de emojis */
 .emoji-picker {
   display: flex;
   gap: 5px;

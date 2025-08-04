@@ -1,5 +1,3 @@
-// scripts/app.js
-
 // ==== Estado base ====
 let participants = [];
 let expenses = [];
@@ -20,7 +18,7 @@ const summaryDiv = document.getElementById('summary');
 const balancesDiv = document.getElementById('balances');
 const resetBtn = document.getElementById('reset-btn');
 
-// Devuelve true si el color es oscuro, false si es claro
+// Determina si un color hexadecimal es oscuro
 function isColorDark(hex) {
     // Quita el "#"
     hex = hex.replace('#', '');
@@ -36,7 +34,7 @@ function isColorDark(hex) {
 
 // ==== PARTICIPANTES ====
 
-// Emoji selector
+// Selector de emoji para participantes
 let participantEmoji = "🧑‍🤝‍🧑";
 const emojiButtons = document.querySelectorAll('.emoji-option');
 emojiButtons.forEach(btn => {
@@ -71,7 +69,7 @@ participantForm.addEventListener('submit', (e) => {
     saveData();
 });
 
-// Funcion colores aleatorios
+// Devuelve un color aleatorio para los participantes
 function pickRandomColor() {
   const colores = ["#1976d2","#ffb300","#43a047","#e53935","#8e24aa","#fbc02d","#00838f","#d84315","#388e3c","#f06292"];
   return colores[Math.floor(Math.random() * colores.length)];
@@ -242,13 +240,16 @@ function startEditExpense(idx, row) {
     cancelBtn.onclick = renderExpenses; // Restaura fila
     saveBtn.onclick = saveEdit;
 
-    // Enter/ESC support
+    // Soporte para teclas Enter y Escape
     [nameInput, amountInput, payerSelect].forEach(el => {
         el.onkeydown = (e) => {
             if (e.key === "Enter") saveEdit();
             if (e.key === "Escape") renderExpenses();
         };
     });
+
+    // Guarda cambios del gasto editado
+
 
     function saveEdit() {
         let name = nameInput.value.trim();

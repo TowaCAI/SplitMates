@@ -1,9 +1,10 @@
 // ==== MULTI-GRUPOS SPLITMATES ====
 
-// 1. Carga grupos desde localStorage o arranca con uno "predeterminado"
+// Carga grupos desde localStorage o crea uno por defecto
 let grupos = JSON.parse(localStorage.getItem('splitmates_grupos')) || {};
 let grupoActivoId = localStorage.getItem('splitmates_grupo_activo') || null;
 
+// Crea un nuevo grupo y devuelve su ID
 function crearGrupo(nombre) {
     // Generar ID "slug" único
     let id = nombre.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '').slice(0, 32);
@@ -14,6 +15,7 @@ function crearGrupo(nombre) {
     return id;
 }
 
+// Elimina un grupo por ID
 function eliminarGrupo(id) {
     if (Object.keys(grupos).length <= 1) {
         alert(TRANSLATIONS[currentLang].cannotDeleteLastGroup);
@@ -29,11 +31,13 @@ function eliminarGrupo(id) {
     }
 }
 
+// Guarda los grupos en localStorage
 function guardarGrupos() {
     localStorage.setItem('splitmates_grupos', JSON.stringify(grupos));
     localStorage.setItem('splitmates_grupo_activo', grupoActivoId);
 }
 
+// Carga el grupo activo en memoria
 function cargarGrupoActivo() {
     if (!grupoActivoId || !grupos[grupoActivoId]) grupoActivoId = Object.keys(grupos)[0];
     const grupo = grupos[grupoActivoId];
@@ -47,6 +51,7 @@ function cargarGrupoActivo() {
     actualizarSelectGrupos();
 }
 
+// Actualiza el selector de grupos
 function actualizarSelectGrupos() {
     const select = document.getElementById('grupos-select');
     select.innerHTML = '';
@@ -59,6 +64,7 @@ function actualizarSelectGrupos() {
     });
 }
 
+// Sincroniza los datos del grupo activo con localStorage
 function sincronizarGrupoActivo() {
     if (!grupoActivoId || !grupos[grupoActivoId]) return;
     grupos[grupoActivoId].participants = [...participants];
@@ -68,13 +74,11 @@ function sincronizarGrupoActivo() {
 
 // ==== UI eventos para grupos ====
 document.getElementById('nuevo-grupo-btn').onclick = () => {
-    // Usa el texto traducido para el prompt
     let nombre = prompt(TRANSLATIONS[currentLang].newGroupPrompt, '');
     if (nombre && nombre.trim().length > 1) {
         let id = crearGrupo(nombre.trim());
         grupoActivoId = id;
         cargarGrupoActivo();
-        // Usa el texto traducido para el mensaje de éxito
         alert(
             TRANSLATIONS[currentLang].groupCreatedSuccess
                 ? TRANSLATIONS[currentLang].groupCreatedSuccess.replace('{group}', nombre.trim())
@@ -90,8 +94,8 @@ document.getElementById('grupos-select').onchange = function() {
     cargarGrupoActivo();
 };
 
-// ==== ENLACE A FUNCIONES EXISTENTES ====
-// Cada vez que cambias participantes/gastos, sincronizá el grupo activo:
+// ==== INTEGRACIÓN CON LA LÓGICA EXISTENTE ====
+// Cada vez que cambian participantes o gastos, sincroniza el grupo activo:
 function saveData() {
     sincronizarGrupoActivo();
 }
