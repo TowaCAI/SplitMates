@@ -321,7 +321,7 @@ function applyTranslations() {
 
   // Participantes
   document.querySelector('#participants-section h2').textContent = t.participants;
-  document.querySelector('#add-participant-form button').textContent = t.addParticipant;
+  document.getElementById('add-participant-btn').textContent = t.addParticipant;
   document.querySelector('#participant-name').setAttribute('placeholder', t.participants);
 
   // Gastos
